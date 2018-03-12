@@ -4,22 +4,12 @@ import utils
 import cv2
 import numpy as np
 
-#http://cv-tricks.com/tensorflow-tutorial/save-restore-tensorflow-models-quick-complete-tutorial/
-
 parser = argparse.ArgumentParser(description='Decode a music score image with a trained model (CTC).')
 parser.add_argument('-image',  dest='image', type=str, required=True, help='Path to the input image.')
 parser.add_argument('-model', dest='model', type=str, required=True, help='Path to the trained model.')
 parser.add_argument('-vocabulary', dest='voc_file', type=str, required=True, help='Path to the vocabulary file.')
 args = parser.parse_args()
 
-import os
-'''
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
-config = tf.ConfigProto()
-config.gpu_options.allow_growth=True
-tf.reset_default_graph()
-sess = tf.InteractiveSession(config=config)
-'''
 tf.reset_default_graph()
 sess = tf.InteractiveSession()
 
