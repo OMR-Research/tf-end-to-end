@@ -27,9 +27,7 @@ args = parser.parse_args()
 
 # Load primus
 
-primus = CTC_PriMuS(args.corpus,args.set,args.voc, args.semantic, args.distortions, val_split = 0.075)
-#primus_test = CTC_PriMuS('/home/data/PriMuS/Corpus/','/home/data/PriMuS/Folds/Sets/0/test.txt','/home/data/PriMuS/dictionary.txt')
-#primus = CTC_PriMuS('/Users/jcalvo/Desktop/PriMuS/Corpus/','/Users/jcalvo/Desktop/PriMuS/corpus_small.txt','/Users/jcalvo/Desktop/PriMuS/dictionary.txt')
+primus = CTC_PriMuS(args.corpus,args.set,args.voc, args.semantic, args.distortions, val_split = 0.1)
 
 # Parameterization
 img_height = 128
