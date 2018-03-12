@@ -5,9 +5,6 @@ import ctc_model
 import utils
 import cv2
 import numpy as np
-
-#http://cv-tricks.com/tensorflow-tutorial/save-restore-tensorflow-models-quick-complete-tutorial/
-
 parser = argparse.ArgumentParser(description='Evaluate test set with a trained model (CTC).')
 parser.add_argument('-corpus', dest='corpus', type=str, default='/home/data/PriMuS/Corpus/', help='Path to the corpus.')
 parser.add_argument('-set',  dest='set', type=str, required=True, help='Path to the set file.')
@@ -15,12 +12,9 @@ parser.add_argument('-model', dest='model', type=str, required=True, help='Path 
 parser.add_argument('-vocabulary', dest='voc_file', type=str, required=True, help='Path to the vocabulary file.')
 args = parser.parse_args()
 
-import os
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
 config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
 sess = tf.InteractiveSession(config=config)
-
 
 #First let's load meta graph and restore weights
 saver = tf.train.import_meta_graph(args.model+'.meta')
