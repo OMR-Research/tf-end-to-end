@@ -4,5 +4,7 @@ TensorFlow code to perform end-to-end Optical Music Recognition on monophonic sc
 More details about how to run the training and prediction stages will be given soon.
 
 Contact: 
-Jorge Calvo Zaragoza - jcalvo@dlsi.ua.es 
-David Rizo - drizo@dlsi.ua.es
+
+Jorge Calvo Zaragoza (jcalvo@dlsi.ua.es)
+
+David Rizo (drizo@dlsi.ua.es)
