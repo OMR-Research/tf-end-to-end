@@ -5,22 +5,17 @@ import ctc_model
 import argparse
 
 import os
-'''
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+
 config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
 tf.reset_default_graph()
 sess = tf.InteractiveSession(config=config)
-'''
-tf.reset_default_graph()
-sess = tf.InteractiveSession()
 
-
-parser = argparse.ArgumentParser(description='Evaluate test set with a trained model (CTC).')
-parser.add_argument('-corpus', dest='corpus', type=str, default='/home/jcalvo/Data/PriMuS/Corpus/', help='Path to the corpus.')
+parser = argparse.ArgumentParser(description='Train model.')
+parser.add_argument('-corpus', dest='corpus', type=str, required=True, help='Path to the corpus.')
 parser.add_argument('-set',  dest='set', type=str, required=True, help='Path to the set file.')
 parser.add_argument('-save_model', dest='save_model', type=str, required=True, help='Path to save the model.')
-parser.add_argument('-vocabulary_path', dest='voc', type=str, default='/home/jcalvo/Data/PriMuS/', help='Path to the vocabulary folder.')
+parser.add_argument('-vocabulary_path', dest='voc', type=str, required=True, help='Path to the vocabulary folder.')
 parser.add_argument('-semantic', dest='semantic', action="store_true", default=False)
 parser.add_argument('-distortions', dest='distortions', action="store_true", default=False)
 args = parser.parse_args()
