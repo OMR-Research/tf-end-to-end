@@ -23,6 +23,12 @@ This repository was used for the experiments reported in the paper:
 }
 ```
 
+## Corpora
+
+This repository is intended for the Printed Images of Music Staves (PrIMuS) dataset.
+
+PrIMuS can be donwloaded from https://grfia.dlsi.ua.es/primus/
+
 ## Using the repository
 
 More details about how to run the training and prediction stages will be given soon.
