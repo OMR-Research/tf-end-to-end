@@ -6,7 +6,7 @@ import utils
 import cv2
 import numpy as np
 parser = argparse.ArgumentParser(description='Evaluate test set with a trained model (CTC).')
-parser.add_argument('-corpus', dest='corpus', type=str, default='/home/data/PriMuS/Corpus/', help='Path to the corpus.')
+parser.add_argument('-corpus', dest='corpus', type=str, required=True, help='Path to the corpus.')
 parser.add_argument('-set',  dest='set', type=str, required=True, help='Path to the set file.')
 parser.add_argument('-model', dest='model', type=str, required=True, help='Path to the trained model.')
 parser.add_argument('-vocabulary', dest='voc_file', type=str, required=True, help='Path to the vocabulary file.')
@@ -16,9 +16,7 @@ config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
 sess = tf.InteractiveSession(config=config)
 
-#First let's load meta graph and restore weights
 saver = tf.train.import_meta_graph(args.model+'.meta')
-#saver.restore(sess,tf.train.latest_checkpoint(args.model))
 saver.restore(sess,args.model)
 
 graph = tf.get_default_graph()
