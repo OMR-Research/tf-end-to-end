@@ -2,11 +2,11 @@
 
 TensorFlow code to perform end-to-end Optical Music Recognition on monophonic scores through Convolutional Recurrent Neural Networks and CTC-based training.
 
-## Citation
+## Citation
 
 This repository was used for the experiments reported in the paper:
 
-[End-to-End Neural Optical Music Recognition of Monophonic Scores](http://www.mdpi.com/2076-3417/8/4/606) by Jorge Calvo Zaragoza and David Rizo.
+[End-to-End Neural Optical Music Recognition of Monophonic Scores](http://www.mdpi.com/2076-3417/8/4/606)
 
 ```
 @Article{Calvo-Zaragoza2018,
@@ -22,7 +22,6 @@ This repository was used for the experiments reported in the paper:
   DOI = {10.3390/app8040606}
 }
 ```
-
 
 ## Using the repository
 
