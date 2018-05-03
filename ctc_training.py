@@ -1,6 +1,6 @@
 import tensorflow as tf
 from primus import CTC_PriMuS
-import utils
+import ctc_utils
 import ctc_model
 import argparse
 
@@ -15,14 +15,13 @@ parser = argparse.ArgumentParser(description='Train model.')
 parser.add_argument('-corpus', dest='corpus', type=str, required=True, help='Path to the corpus.')
 parser.add_argument('-set',  dest='set', type=str, required=True, help='Path to the set file.')
 parser.add_argument('-save_model', dest='save_model', type=str, required=True, help='Path to save the model.')
-parser.add_argument('-vocabulary_path', dest='voc', type=str, required=True, help='Path to the vocabulary folder.')
+parser.add_argument('-vocabulary', dest='voc', type=str, required=True, help='Path to the vocabulary file.')
 parser.add_argument('-semantic', dest='semantic', action="store_true", default=False)
-parser.add_argument('-distortions', dest='distortions', action="store_true", default=False)
 args = parser.parse_args()
 
 # Load primus
 
-primus = CTC_PriMuS(args.corpus,args.set,args.voc, args.semantic, args.distortions, val_split = 0.1)
+primus = CTC_PriMuS(args.corpus,args.set,args.voc, args.semantic, val_split = 0.1)
 
 # Parameterization
 img_height = 128
@@ -46,7 +45,7 @@ for epoch in range(max_epochs):
                              feed_dict={
                                 inputs: batch['inputs'],
                                 seq_len: batch['seq_lengths'],
-                                targets: utils.sparse_tuple_from(batch['targets']),
+                                targets: ctc_utils.sparse_tuple_from(batch['targets']),
                                 rnn_keep_prob: dropout,
                             })
 
@@ -74,11 +73,11 @@ for epoch in range(max_epochs):
             prediction = sess.run(decoded,
                                   mini_batch_feed_dict)
     
-            str_predictions = utils.sparse_tensor_to_strs(prediction)
+            str_predictions = ctc_utils.sparse_tensor_to_strs(prediction)
     
 
             for i in range(len(str_predictions)):
-                ed = utils.edit_distance(str_predictions[i], validation_batch['targets'][val_idx+i])
+                ed = ctc_utils.edit_distance(str_predictions[i], validation_batch['targets'][val_idx+i])
                 val_ed = val_ed + ed
                 val_len = val_len + len(validation_batch['targets'][val_idx+i])
                 val_count = val_count + 1

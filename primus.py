@@ -7,11 +7,9 @@ class CTC_PriMuS:
     gt_element_separator = '-'
     PAD_COLUMN = 0
     validation_dict = None
-    dictionary_semantic = "dictionary_semantic.txt"
-    dictionary_agnostic = "dictionary_agnostic.txt"
 
 
-    def __init__(self, corpus_dirpath, corpus_filepath, dictionary_path, semantic, distortions, val_split = 0.0):
+    def __init__(self, corpus_dirpath, corpus_filepath, dictionary_path, semantic, distortions = False, val_split = 0.0):
         self.semantic = semantic
         self.distortions = distortions
         self.corpus_dirpath = corpus_dirpath
@@ -26,13 +24,8 @@ class CTC_PriMuS:
         # Dictionary
         self.word2int = {}
         self.int2word = {}
-
-        if self.semantic:
-            dictionary_filepath = dictionary_path + '/' + self.dictionary_semantic
-        else:
-            dictionary_filepath = dictionary_path + '/' + self.dictionary_agnostic
             
-        dict_file = open(dictionary_filepath,'r')
+        dict_file = open(dictionary_path,'r')
         dict_list = dict_file.read().splitlines()
         for word in dict_list:
             if not word in self.word2int:
