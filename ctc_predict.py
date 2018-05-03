@@ -1,6 +1,6 @@
 import argparse
 import tensorflow as tf
-import utils
+import ctc_utils
 import cv2
 import numpy as np
 
@@ -22,9 +22,8 @@ for word in dict_list:
     int2word[word_idx] = word
 dict_file.close()
 
-#First let's load meta graph and restore weights
+# Restore weights
 saver = tf.train.import_meta_graph(args.model)
-#saver.restore(sess,tf.train.latest_checkpoint(args.model))
 saver.restore(sess,args.model[:-5])
 
 graph = tf.get_default_graph()
@@ -42,8 +41,8 @@ WIDTH_REDUCTION, HEIGHT = sess.run([width_reduction_tensor, height_tensor])
 decoded, _ = tf.nn.ctc_greedy_decoder(logits, seq_len)
 
 image = cv2.imread(args.image,False)
-image = utils.resize(image, HEIGHT)
-image = utils.normalize(image)
+image = ctc_utils.resize(image, HEIGHT)
+image = ctc_utils.normalize(image)
 image = np.asarray(image).reshape(1,image.shape[0],image.shape[1],1)
 
 seq_lengths = [ image.shape[2] / WIDTH_REDUCTION ]
@@ -55,7 +54,7 @@ prediction = sess.run(decoded,
                           rnn_keep_prob: 1.0,
                       })
 
-str_predictions = utils.sparse_tensor_to_strs(prediction)
+str_predictions = ctc_utils.sparse_tensor_to_strs(prediction)
 for w in str_predictions[0]:
     print (int2word[w]),
     print ('\t'),

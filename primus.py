@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import utils
+import ctc_utils
 import random
 
 class CTC_PriMuS:
@@ -68,8 +68,8 @@ class CTC_PriMuS:
             else:
                 sample_img = cv2.imread(sample_fullpath + '.png', False)  # Grayscale is assumed!
             height = params['img_height']
-            sample_img = utils.resize(sample_img,height)
-            images.append(utils.normalize(sample_img))
+            sample_img = ctc_utils.resize(sample_img,height)
+            images.append(ctc_utils.normalize(sample_img))
 
             # GROUND TRUTH
             if self.semantic:
@@ -78,7 +78,7 @@ class CTC_PriMuS:
                 sample_full_filepath = sample_fullpath + '.agnostic'
             
             sample_gt_file = open(sample_full_filepath, 'r')
-            sample_gt_plain = sample_gt_file.readline().rstrip().split(utils.word_separator())
+            sample_gt_plain = sample_gt_file.readline().rstrip().split(ctc_utils.word_separator())
             sample_gt_file.close()
 
             labels.append([self.word2int[lab] for lab in sample_gt_plain])
@@ -123,8 +123,8 @@ class CTC_PriMuS:
                 # IMAGE
                 sample_img = cv2.imread(sample_fullpath + '.png', False)  # Grayscale is assumed!
                 height = params['img_height']
-                sample_img = utils.resize(sample_img,height)
-                images.append(utils.normalize(sample_img))
+                sample_img = ctc_utils.resize(sample_img,height)
+                images.append(ctc_utils.normalize(sample_img))
     
                 # GROUND TRUTH
                 if self.semantic:
@@ -134,7 +134,7 @@ class CTC_PriMuS:
                 
                 sample_gt_file = open(sample_full_filepath, 'r')
             
-                sample_gt_plain = sample_gt_file.readline().rstrip().split(utils.word_separator())
+                sample_gt_plain = sample_gt_file.readline().rstrip().split(ctc_utils.word_separator())
                 sample_gt_file.close()
     
                 labels.append([self.word2int[lab] for lab in sample_gt_plain])
