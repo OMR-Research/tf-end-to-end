@@ -31,6 +31,23 @@ PrIMuS can be donwloaded from https://grfia.dlsi.ua.es/primus/
 
 ## Using the repository
 
+### Training
+
+Assuming that PrIMuS dataset has been downloaded, and all its samples has been placed in the same folder, the training of the models can be done with `ctc_training.py`. It is necessary to build a list of training samples and the set of symbols (vocabulary). Examples of these files are given in `Data`folder.
+
+#### Semantic  
+
+``
+python ctc_training.py -semantic -corpus <path_to_PrIMuS> -set Data/train.txt -vocabulary Data/vocabulary_semantic.txt  -save_model ./trained_semantic_model
+``
+
+#### Agnostic  
+
+``
+python ctc_training.py -corpus <path_to_PrIMuS> -set Data/train.txt -vocabulary Data/vocabulary_agnostic.txt -save_model ./trained_agnostic_model
+``
+ 
+
 ### Prediction
 
 For running inference over an input image, `ctc_predict.py` can be used, along with an input image, a trained model, and the corresponding vocabulary file. The repository is provided with trained models with both agnostic and semantic representations in `Models` folder. These models were the result of the traning process for one of the folds of the 10-fold cross-validation considered in the paper.
