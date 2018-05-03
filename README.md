@@ -74,7 +74,7 @@ should get the following prediction
 clef-C1 	keySignature-EbM 	timeSignature-2/4 	multirest-23 	barline 	rest-quarter 	rest-eighth 	note-Bb4_eighth 	barline 	note-Bb4_quarter. 	note-G4_eighth 	barline 	note-Eb5_quarter. 	note-D5_eighth 	barline 	note-C5_eighth 	note-C5_eighth 	rest-quarter 	barline 
 ``
 
-The ground-truth of is given in `Data/Example/000051652-1_2_1.semantic`:
+The ground-truth of this example is given in `Data/Example/000051652-1_2_1.semantic`:
 
 ``
 clef-C1	    keySignature-EbM	timeSignature-2/4	multirest-23	barline	rest-quarter	rest-eighth	        note-Bb4_eighth	    barline	    note-Bb4_quarter.	note-G4_eighth	barline	    note-Eb5_quarter.	note-D5_eighth	barline	    note-C5_eighth	note-C5_eighth	rest-quarter	barline
