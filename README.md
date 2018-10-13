@@ -2,8 +2,6 @@
 
 TensorFlow code to perform end-to-end Optical Music Recognition on monophonic scores through Convolutional Recurrent Neural Networks and CTC-based training.
 
-*Note:* to clone the repository with the pre-trained models you need to use Git LFS (https://git-lfs.github.com/).
-
 ## Citation
 
 This repository was used for the experiments reported in the paper:
@@ -53,7 +51,12 @@ python ctc_training.py -corpus <path_to_PrIMuS> -set Data/train.txt -vocabulary 
 
 ## Recognition
 
-For running inference over an input image, `ctc_predict.py` can be used, along with an input image, a trained model, and the corresponding vocabulary file. The repository is provided with trained models with both agnostic and semantic representations in `Models` folder. These models were the result of the traning process for one of the folds of the 10-fold cross-validation considered in the paper.
+For running inference over an input image, `ctc_predict.py` can be used, along with an input image, a trained model, and the corresponding vocabulary file. 
+
+The repository is not provided with trained models but these can be download from:
+* [Agnostic model](https://www.dlsi.ua.es//~jcalvo/data/Models/PrIMuS/Agnostic-Model.zip)
+* [Semantic model](https://www.dlsi.ua.es//~jcalvo/data/Models/PrIMuS/Semantic-Model.zip)
+These models were the result of the traning process for one of the folds of the 10-fold cross-validation considered in the paper.
 
 Let's see an example for the sample from PrIMuS provided in `Data/Example`:
 
@@ -67,7 +70,7 @@ This sample belongs to the test set of the aforementioned fold, so it was not se
 Running
 
 ```
-python ctc_predict.py -image Data/Example/000051652-1_2_1.png -model Models/agnostic_model.meta -vocabulary Data/vocabulary_agnostic.txt
+python ctc_predict.py -image Data/Example/000051652-1_2_1.png -model Models/semantic_model.meta -vocabulary Data/vocabulary_semantic.txt
 ```
 
 should get the following prediction
