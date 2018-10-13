@@ -54,8 +54,10 @@ python ctc_training.py -corpus <path_to_PrIMuS> -set Data/train.txt -vocabulary 
 For running inference over an input image, `ctc_predict.py` can be used, along with an input image, a trained model, and the corresponding vocabulary file. 
 
 The repository is not provided with trained models but these can be download from:
+
 * [Agnostic model](https://www.dlsi.ua.es//~jcalvo/data/Models/PrIMuS/Agnostic-Model.zip)
 * [Semantic model](https://www.dlsi.ua.es//~jcalvo/data/Models/PrIMuS/Semantic-Model.zip)
+
 These models were the result of the traning process for one of the folds of the 10-fold cross-validation considered in the paper.
 
 Let's see an example for the sample from PrIMuS provided in `Data/Example`:
