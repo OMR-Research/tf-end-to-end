@@ -2,6 +2,8 @@
 
 TensorFlow code to perform end-to-end Optical Music Recognition on monophonic scores through Convolutional Recurrent Neural Networks and CTC-based training.
 
+*Note:* to clone the repository with the pre-trained models you need to use Git LFS (https://git-lfs.github.com/).
+
 ## Citation
 
 This repository was used for the experiments reported in the paper:
