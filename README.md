@@ -55,8 +55,8 @@ For running inference over an input image, `ctc_predict.py` can be used, along w
 
 The repository is not provided with trained models but these can be download from:
 
-* [Agnostic model](https://www.dlsi.ua.es//~jcalvo/data/Models/PrIMuS/Agnostic-Model.zip)
-* [Semantic model](https://www.dlsi.ua.es//~jcalvo/data/Models/PrIMuS/Semantic-Model.zip)
+* [Agnostic model](https://grfia.dlsi.ua.es/primus/models/PrIMuS/Agnostic-Model.zip)
+* [Semantic model](https://grfia.dlsi.ua.es/primus/models/PrIMuS/Semantic-Model.zip)
 
 These models were the result of the traning process for one of the folds of the 10-fold cross-validation considered in the paper.
 
@@ -116,3 +116,4 @@ As discussed in the paper, this representation often misses the last barline.
 ## Contact: 
 
 * Jorge Calvo Zaragoza (jcalvo@dlsi.ua.es)
+
