@@ -1,0 +1,6 @@
+.vs
+Data
+Models
+primus_conversor
+*.semantic
+/primus_conversor/*
