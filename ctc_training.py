@@ -6,10 +6,10 @@ import argparse
 
 import os
 
-config = tf.ConfigProto()
+config = tf.compat.v1.ConfigProto()
 config.gpu_options.allow_growth=True
-tf.reset_default_graph()
-sess = tf.InteractiveSession(config=config)
+tf.compat.v1.reset_default_graph()
+sess = tf.compat.v1.InteractiveSession(config=config)
 
 parser = argparse.ArgumentParser(description='Train model.')
 parser.add_argument('-corpus', dest='corpus', type=str, required=True, help='Path to the corpus.')
@@ -31,11 +31,11 @@ dropout = 0.5
 
 # Model
 inputs, seq_len, targets, decoded, loss, rnn_keep_prob = ctc_model.ctc_crnn(params)
-train_opt = tf.train.AdamOptimizer().minimize(loss)
+train_opt = tf.compat.v1.train.AdamOptimizer().minimize(loss)
 
 
-saver = tf.train.Saver(max_to_keep=None)
-sess.run(tf.global_variables_initializer())
+saver = tf.compat.v1.train.Saver(max_to_keep=None)
+sess.run(tf.compat.v1.global_variables_initializer())
 
 # Training loop
 for epoch in range(max_epochs):

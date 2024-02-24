@@ -10,8 +10,8 @@ parser.add_argument('-model', dest='model', type=str, required=True, help='Path 
 parser.add_argument('-vocabulary', dest='voc_file', type=str, required=True, help='Path to the vocabulary file.')
 args = parser.parse_args()
 
-tf.reset_default_graph()
-sess = tf.InteractiveSession()
+tf.compat.v1.reset_default_graph()
+sess = tf.compat.v1.InteractiveSession()
 
 # Read the dictionary
 dict_file = open(args.voc_file,'r')
@@ -23,17 +23,17 @@ for word in dict_list:
 dict_file.close()
 
 # Restore weights
-saver = tf.train.import_meta_graph(args.model)
+saver = tf.compat.v1.train.import_meta_graph(args.model)
 saver.restore(sess,args.model[:-5])
 
-graph = tf.get_default_graph()
+graph = tf.compat.v1.get_default_graph()
 
 input = graph.get_tensor_by_name("model_input:0")
 seq_len = graph.get_tensor_by_name("seq_lengths:0")
 rnn_keep_prob = graph.get_tensor_by_name("keep_prob:0")
 height_tensor = graph.get_tensor_by_name("input_height:0")
 width_reduction_tensor = graph.get_tensor_by_name("width_reduction:0")
-logits = tf.get_collection("logits")[0]
+logits = tf.compat.v1.get_collection("logits")[0]
 
 # Constants that are saved inside the model itself
 WIDTH_REDUCTION, HEIGHT = sess.run([width_reduction_tensor, height_tensor])

@@ -34,7 +34,7 @@ def default_model_params(img_height, vocabulary_size):
 def ctc_crnn(params):
     # TODO Assert parameters
 
-    input = tf.placeholder(shape=(None,
+    input = tf.compat.v1.placeholder(shape=(None,
                                    params['img_height'],
                                    params['img_width'],
                                    params['img_channels']),  # [batch, height, width, channels]
@@ -51,17 +51,17 @@ def ctc_crnn(params):
     x = input
     for i in range(params['conv_blocks']):
 
-        x = tf.layers.conv2d(
+        x = tf.compat.v1.layers.conv2d(
             inputs=x,
             filters=params['conv_filter_n'][i],
             kernel_size=params['conv_filter_size'][i],
             padding="same",
             activation=None)
 
-        x = tf.layers.batch_normalization(x)
+        x = tf.compat.v1.layers.batch_normalization(x)
         x = leaky_relu(x)
 
-        x = tf.layers.max_pooling2d(inputs=x,
+        x = tf.compat.v1.layers.max_pooling2d(inputs=x,
                                     pool_size=params['conv_pooling_size'][i],
                                     strides=params['conv_pooling_size'][i])
 
@@ -79,16 +79,16 @@ def ctc_crnn(params):
     tf.constant(width_reduction,name='width_reduction')
 
     # Recurrent block
-    rnn_keep_prob = tf.placeholder(dtype=tf.float32, name="keep_prob")
+    rnn_keep_prob = tf.compat.v1.placeholder(dtype=tf.float32, name="keep_prob")
     rnn_hidden_units = params['rnn_units']
     rnn_hidden_layers = params['rnn_layers']
 
-    rnn_outputs, _ = tf.nn.bidirectional_dynamic_rnn(
-        tf.contrib.rnn.MultiRNNCell(
-            [tf.nn.rnn_cell.DropoutWrapper(tf.contrib.rnn.BasicLSTMCell(rnn_hidden_units), input_keep_prob=rnn_keep_prob)
+    rnn_outputs, _ = tf.compat.v1.nn.bidirectional_dynamic_rnn(
+        tf.compat.v1.nn.rnn_cell.MultiRNNCell(
+            [tf.compat.v1.nn.rnn_cell.DropoutWrapper(tf.compat.v1.nn.rnn_cell.BasicLSTMCell(rnn_hidden_units), input_keep_prob=rnn_keep_prob)
              for _ in range(rnn_hidden_layers)]),
-        tf.contrib.rnn.MultiRNNCell(
-            [tf.nn.rnn_cell.DropoutWrapper(tf.contrib.rnn.BasicLSTMCell(rnn_hidden_units), input_keep_prob=rnn_keep_prob)
+        tf.compat.v1.nn.rnn_cell.MultiRNNCell(
+            [tf.compat.v1.nn.rnn_cell.DropoutWrapper(tf.compat.v1.nn.rnn_cell.BasicLSTMCell(rnn_hidden_units), input_keep_prob=rnn_keep_prob)
              for _ in range(rnn_hidden_layers)]),
         features,
         dtype=tf.float32,
@@ -103,12 +103,12 @@ def ctc_crnn(params):
         activation_fn=None,
     )
     
-    tf.add_to_collection("logits",logits) # for restoring purposes
+    tf.compat.v1.add_to_collection("logits",logits) # for restoring purposes
 
     # CTC Loss computation
-    seq_len = tf.placeholder(tf.int32, [None], name='seq_lengths')
-    targets = tf.sparse_placeholder(dtype=tf.int32, name='target')
-    ctc_loss = tf.nn.ctc_loss(labels=targets, inputs=logits, sequence_length=seq_len, time_major=True)
+    seq_len = tf.compat.v1.placeholder(tf.int32, [None], name='seq_lengths')
+    targets = tf.compat.v1.sparse_placeholder(dtype=tf.int32, name='target')
+    ctc_loss = tf.compat.v1.nn.ctc_loss(labels=targets, inputs=logits, sequence_length=seq_len, time_major=True)
     loss = tf.reduce_mean(ctc_loss)
 
     # CTC decoding
