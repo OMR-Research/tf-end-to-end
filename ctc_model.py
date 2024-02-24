@@ -97,11 +97,9 @@ def ctc_crnn(params):
 
     rnn_outputs = tf.concat(rnn_outputs, 2)
 
-    logits = tf.contrib.layers.fully_connected(
-        rnn_outputs,
-        params['vocabulary_size'] + 1,  # BLANK
-        activation_fn=None,
-    )
+    
+    # Create a dense layer (fully connected layer) using tf.keras.layers.Dense
+    logits = tf.keras.layers.Dense(units=params['vocabulary_size'] + 1, activation=None)(rnn_outputs_concatenated)
     
     tf.compat.v1.add_to_collection("logits",logits) # for restoring purposes
 
