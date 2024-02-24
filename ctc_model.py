@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.python.framework import ops
 from tensorflow.python.ops import math_ops
-
+tf.compat.v1.disable_eager_execution()
 
 def leaky_relu(features, alpha=0.2, name=None):
   with ops.name_scope(name, "LeakyRelu", [features, alpha]):
