@@ -1,4 +1,4 @@
-# Optical Music Recognition <a target="_blank" href="https://colab.research.google.com/github/FreshMag/tf-end-to-end/blob/master/omr.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+# Optical Music Recognition (img2midi) <a target="_blank" href="https://colab.research.google.com/github/FreshMag/tf-end-to-end/blob/master/omr.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 This repository is a fork of the [original project by Calvo-Zaragoza](https://github.com/OMR-Research/tf-end-to-end) and
 was used for the experiments reported in the paper [End-to-End Neural Optical Music Recognition of Monophonic Scores](http://www.mdpi.com/2076-3417/8/4/606).
