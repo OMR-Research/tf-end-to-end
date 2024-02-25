@@ -1,12 +1,15 @@
 import numpy as np
 import cv2
 
+
 def convert_inputs_to_ctc_format(target_text):
     SPACE_TOKEN = '-'
     SPACE_INDEX = 4
     FIRST_INDEX = 0
 
-    original = ' '.join(target_text.strip().lower().split(' ')).replace('.', '').replace('?', '').replace(',', '').replace("'", '').replace('!', '').replace('-', '')
+    original = ' '.join(target_text.strip().lower().split(' ')).replace('.', '').replace('?', '').replace(',',
+                                                                                                          '').replace(
+        "'", '').replace('!', '').replace('-', '')
     print(original)
     targets = original.replace(' ', '  ')
     targets = targets.split(' ')
@@ -23,6 +26,7 @@ def convert_inputs_to_ctc_format(target_text):
 
     return train_targets, original
 
+
 def sparse_tuple_from(sequences, dtype=np.int32):
     indices = []
     values = []
@@ -37,12 +41,13 @@ def sparse_tuple_from(sequences, dtype=np.int32):
 
     return indices, values, shape
 
+
 def sparse_tensor_to_strs(sparse_tensor):
-    indices= sparse_tensor[0][0]
+    indices = sparse_tensor[0][0]
     values = sparse_tensor[0][1]
     dense_shape = sparse_tensor[0][2]
 
-    strs = [ [] for i in range(dense_shape[0]) ]
+    strs = [[] for i in range(dense_shape[0])]
 
     string = []
     ptr = 0
@@ -108,40 +113,40 @@ def pad_sequences(sequences, maxlen=None, dtype=np.float32,
 def word_separator():
     return '\t'
 
-def levenshtein(a,b):
+
+def levenshtein(a, b):
     "Computes the Levenshtein distance between a and b."
     n, m = len(a), len(b)
 
     if n > m:
-        a,b = b,a
-        n,m = m,n
+        a, b = b, a
+        n, m = m, n
 
-    current = range(n+1)
-    for i in range(1,m+1):
-        previous, current = current, [i]+[0]*n
-        for j in range(1,n+1):
-            add, delete = previous[j]+1, current[j-1]+1
-            change = previous[j-1]
-            if a[j-1] != b[i-1]:
+    current = range(n + 1)
+    for i in range(1, m + 1):
+        previous, current = current, [i] + [0] * n
+        for j in range(1, n + 1):
+            add, delete = previous[j] + 1, current[j - 1] + 1
+            change = previous[j - 1]
+            if a[j - 1] != b[i - 1]:
                 change = change + 1
             current[j] = min(add, delete, change)
 
     return current[n]
 
 
-def edit_distance(a,b,EOS=-1,PAD=-1):
-    _a = [s for s in a if s != EOS and s != PAD]
-    _b = [s for s in b if s != EOS and s != PAD]
+def edit_distance(a, b, eos=-1, PAD=-1):
+    _a = [s for s in a if s != eos and s != PAD]
+    _b = [s for s in b if s != eos and s != PAD]
 
-    return levenshtein(_a,_b)
+    return levenshtein(_a, _b)
 
 
 def normalize(image):
-    return (255. - image)/255.
+    return (255. - image) / 255.
 
 
 def resize(image, height):
     width = int(float(height * image.shape[1]) / image.shape[0])
     sample_img = cv2.resize(image, (width, height))
     return sample_img
-
