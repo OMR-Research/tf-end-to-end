@@ -69,7 +69,6 @@ class CTC:
         self.decoded, _ = tf.nn.ctc_greedy_decoder(logits, self.seq_len)
 
     def predict(self, image_file_path):
-        print("Processing image...")
         image = cv2.imread(image_file_path, cv2.IMREAD_GRAYSCALE)
         image = ctc_utils.resize(image, self.height)
         image = ctc_utils.normalize(image)
@@ -85,6 +84,7 @@ class CTC:
                                       })
 
         str_predictions = ctc_utils.sparse_tensor_to_strs(prediction)
+
         return str_predictions[0]
 
 
@@ -97,6 +97,8 @@ if __name__ == "__main__":
 
     sheet = EncodedSheet(args.voc_file)
     model = CTC(args.model)
+    print("Processing image...")
     sheet.add_from_predictions(model.predict(args.image))
-
+    print("Done!")
+    print("Symbols found:")
     sheet.print_symbols()
