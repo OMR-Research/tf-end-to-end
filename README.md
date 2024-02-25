@@ -62,7 +62,7 @@ These models were the result of the traning process for one of the folds of the 
 
 Let's see an example for the sample from PrIMuS provided in `Data/Example`:
 
-![Alt text](Data/Example/000051652-1_2_1.png?raw=true "000051652-1_2_1")
+![Alt text](data/Example/000051652-1_2_1.png?raw=true "000051652-1_2_1")
 
 This sample belongs to the test set of the aforementioned fold, so it was not seen by the networks during their training stage.
 
