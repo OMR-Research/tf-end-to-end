@@ -1,6 +1,6 @@
 # Optical Music Recognition (img2midi) <a target="_blank" href="https://colab.research.google.com/github/FreshMag/tf-end-to-end/blob/master/omr.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-This repository is a fork of the [original project by Calvo-Zaragoza](https://github.com/OMR-Research/tf-end-to-end) and
+This repository is a fork of the [original project by Calvo-Zaragoza](https://github.com/OMR-Research/tf-end-to-end) that
 was used for the experiments reported in the paper [End-to-End Neural Optical Music Recognition of Monophonic Scores](http://www.mdpi.com/2076-3417/8/4/606).
 More information can be found below. Please consider taking a look at the original repository if you want to know all
 the details about how the model was originally trained and created.
@@ -10,6 +10,7 @@ the details about how the model was originally trained and created.
 - All the original code used to *load the model trained on the PrIMuS dataset and make predictions*
 - Additional code to make the original one more usable
 - Additional code used to pre-process music sheets' images taken from photos
+- Additional code that translates the format of the models' output into midi (or other music encoding formats)
 
 All the additional code is part of a Computer Vision project I worked on. 
 
