@@ -5,12 +5,10 @@
       <excludeFolder url="file://$MODULE_DIR$/Data/Corpus" />
       <excludeFolder url="file://$MODULE_DIR$/Models" />
       <excludeFolder url="file://$MODULE_DIR$/primus_conversor" />
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/models" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.9 (tf-end-to-end)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-  <component name="PyDocumentationSettings">
-    <option name="format" value="PLAIN" />
-    <option name="myDocStringFormat" value="Plain" />
   </component>
 </module>
