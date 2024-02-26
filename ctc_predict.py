@@ -8,14 +8,11 @@
 
 """
 
-import argparse
 import tensorflow as tf
 import ctc_utils
 import cv2
 import numpy as np
 
-from midi_translator import MidiTranslator, MidiPlayer
-from utils import EncodedSheet
 
 """
 Disables eager execution: introduced after script conversion using tf_upgrade_v2 script 
@@ -65,30 +62,3 @@ class CTC:
         str_predictions = ctc_utils.sparse_tensor_to_strs(prediction)
 
         return str_predictions[0]
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Decode a music score image with a trained model (CTC).')
-    parser.add_argument('-image', dest='image', type=str, required=True, help='Path to the input image.')
-    parser.add_argument('-model', dest='model', type=str, required=True, help='Path to the trained model.')
-    parser.add_argument('-vocabulary', dest='voc_file', type=str, required=True, help='Path to the vocabulary file.')
-    args = parser.parse_args()
-
-    sheet = EncodedSheet(args.voc_file)
-    model = CTC(args.model)
-    print("Processing image...")
-    sheet.add_from_predictions(model.predict(args.image))
-    print("Done!")
-    print("Symbols found:")
-    sheet.print_symbols()
-
-    print("Converting to MIDI...")
-    output_midi_path = "output.mid"
-    translator = MidiTranslator(sheet)
-    translator.translate(output_midi_path)
-    print("Done!")
-
-    print("Converting to audio...")
-    player = MidiPlayer(output_midi_path)
-    player.to_audio_file()
-    print("Done!")
