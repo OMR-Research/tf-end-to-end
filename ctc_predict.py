@@ -14,35 +14,14 @@ import ctc_utils
 import cv2
 import numpy as np
 
+from midi_translator import MidiTranslator, MidiPlayer
+from utils import EncodedSheet
+
 """
 Disables eager execution: introduced after script conversion using tf_upgrade_v2 script 
 https://www.tensorflow.org/guide/migrate/upgrade?hl=en
 """
 tf.compat.v1.disable_eager_execution()
-
-
-class EncodedSheet:
-    def __init__(self, vocabulary_file_path="./data/vocabulary_semantic.txt"):
-        int2word = {}
-        with open(vocabulary_file_path, 'r') as dict_file:
-            for idx, word in enumerate(dict_file):
-                int2word[idx] = word.strip()
-
-        self.int2word = int2word
-        self.output_symbols = []
-
-    def add_from_predictions(self, predictions):
-        for symbol_index in predictions:
-            self.output_symbols.append(self.int2word[symbol_index])
-
-    def print_symbols(self):
-        print(self.output_symbols)
-
-    def write_to_file(self, filename):
-        with open(filename, 'w') as file:
-            for string in self.output_symbols:
-                file.write(string + '\t')  # Separating strings by "\t"
-            file.write('\n')  # Adding a newline at the end
 
 
 class CTC:
@@ -102,3 +81,14 @@ if __name__ == "__main__":
     print("Done!")
     print("Symbols found:")
     sheet.print_symbols()
+
+    print("Converting to MIDI...")
+    output_midi_path = "output.mid"
+    translator = MidiTranslator(sheet)
+    translator.translate(output_midi_path)
+    print("Done!")
+
+    print("Converting to audio...")
+    player = MidiPlayer(output_midi_path)
+    player.to_audio_file()
+    print("Done!")
