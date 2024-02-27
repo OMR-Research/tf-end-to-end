@@ -5,7 +5,7 @@ from midi2audio import FluidSynth
 from utils import Delegate
 
 
-class MidiTranslator:
+class SheetTranslator:
     def __init__(self, sheet, conversor_path="./converter.sh"):
         self.sheet = sheet
         self.delegate = Delegate(conversor_path)

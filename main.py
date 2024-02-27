@@ -2,7 +2,7 @@
 import argparse
 
 from ctc_predict import CTC
-from midi_translator import MidiTranslator, MidiPlayer
+from translator import SheetTranslator, MidiPlayer
 from utils import EncodedSheet
 
 if __name__ == "__main__":
@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     print("Converting to MIDI...")
     output_midi_path = "output.mid"
-    translator = MidiTranslator(sheet)
+    translator = SheetTranslator(sheet)
     translator.translate(output_midi_path)
     print("Done!")
 
