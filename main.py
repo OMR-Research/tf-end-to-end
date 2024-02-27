@@ -1,5 +1,7 @@
 
 import argparse
+
+from ctc_predict import CTC
 from midi_translator import MidiTranslator, MidiPlayer
 from utils import EncodedSheet
 
