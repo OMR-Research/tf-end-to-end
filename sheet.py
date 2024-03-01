@@ -1,3 +1,6 @@
+from metrics import Metrics
+
+
 class EncodedSheet:
     def __init__(self, vocabulary_file_path="./data/vocabulary_semantic.txt"):
         int2word = {}
@@ -7,11 +10,18 @@ class EncodedSheet:
 
         self.int2word = int2word
         self.output_symbols = []
+        self.output_indexes = []
 
     def add_from_predictions(self, predictions):
         self.output_symbols = []
         for symbol_index in predictions:
+            self.output_indexes.append(symbol_index)
             self.output_symbols.append(self.int2word[symbol_index])
+
+    def compare(self, true_sheet):
+        metrics = Metrics()
+        metrics.compute_from_semantics(self.output_indexes, true_sheet.output_indexes)
+        return metrics
 
     def print_symbols(self):
         print(self.output_symbols)
