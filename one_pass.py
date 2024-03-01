@@ -18,7 +18,7 @@ def one_pass_metric(image_path, ground_truth_path):
 
 if __name__ == '__main__':
     image_path = "./data/input/test1.png"
-    one_pass_sheet(image_path).write_to_file("./output/test1.semantic", "index")
+    # one_pass_sheet(image_path).write_to_file("./output/test1.semantic", "index")
 
     metric = one_pass_metric(image_path, "./output/test1.semantic")
     metric.print_table()
