@@ -1,8 +1,5 @@
 import os
-
-from midi2audio import FluidSynth
-
-from utils import Delegate
+import subprocess
 
 
 class SheetTranslator:
@@ -20,15 +17,13 @@ class SheetTranslator:
             os.remove(semantic_file_path)
 
 
-class MidiPlayer:
-    def __init__(self, midi_path):
-        self.midi_path = midi_path
+class Delegate:
+    def __init__(self, path):
+        self.path = path
 
-    def to_audio_file(self, output_file_name="output.flac", delete_midi=True):
-        # using the default sound font in 44100 Hz sample rate
-        fs = FluidSynth()
-        fs.midi_to_audio(self.midi_path, output_file_name)
-
-        if delete_midi and os.path.exists(self.midi_path):
-            # Delete the semantic temporary file
-            os.remove(self.midi_path)
+    def run(self, input_file_path, output_file_path):
+        try:
+            subprocess.run(["sh", self.path, input_file_path, output_file_path])
+            print("Shell script executed successfully")
+        except subprocess.CalledProcessError as e:
+            print("Error executing shell script:", e)

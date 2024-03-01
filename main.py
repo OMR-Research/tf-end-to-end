@@ -2,8 +2,8 @@
 import argparse
 
 from ctc_predict import CTC
-from translator import SheetTranslator, MidiPlayer
-from utils import EncodedSheet
+from translator import SheetTranslator
+from sheet import EncodedSheet
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Decode a music score image with a trained model (CTC).')
@@ -24,9 +24,4 @@ if __name__ == "__main__":
     output_midi_path = "output.mid"
     translator = SheetTranslator(sheet)
     translator.translate(output_midi_path)
-    print("Done!")
-
-    print("Converting to audio...")
-    player = MidiPlayer(output_midi_path)
-    player.to_audio_file()
     print("Done!")

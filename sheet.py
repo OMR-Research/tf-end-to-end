@@ -1,7 +1,3 @@
-import os
-import subprocess
-
-
 class EncodedSheet:
     def __init__(self, vocabulary_file_path="./data/vocabulary_semantic.txt"):
         int2word = {}
@@ -13,6 +9,7 @@ class EncodedSheet:
         self.output_symbols = []
 
     def add_from_predictions(self, predictions):
+        self.output_symbols = []
         for symbol_index in predictions:
             self.output_symbols.append(self.int2word[symbol_index])
 
@@ -24,15 +21,3 @@ class EncodedSheet:
             for string in self.output_symbols:
                 file.write(string + '\t')  # Separating strings by "\t"
             file.write('\n')  # Adding a newline at the end
-
-
-class Delegate:
-    def __init__(self, path):
-        self.path = path
-
-    def run(self, input_file_path, output_file_path):
-        try:
-            subprocess.run(["sh", self.path, input_file_path, output_file_path])
-            print("Shell script executed successfully")
-        except subprocess.CalledProcessError as e:
-            print("Error executing shell script:", e)
