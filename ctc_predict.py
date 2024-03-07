@@ -4,7 +4,7 @@
 
     Modified by Francesco Magnani <https://github.com/FreshMag>
 
-    Licensed under the MIT License (see LICENSE for details)
+    Licensed under the MIT License (see LICENSE.txt for details)
 
 """
 

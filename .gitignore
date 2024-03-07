@@ -4,3 +4,4 @@ Models
 primus_conversor
 *.semantic
 /primus_conversor/*
+.DS_Store
