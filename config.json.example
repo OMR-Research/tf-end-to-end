@@ -1,0 +1,16 @@
+{
+    "training_dataset_path": "",
+    "testing_dataset_path": "",
+    "test_set_path": "/path/to/test.txt",
+    "train_set_path": "/path/to/train.txt",
+    "checkpoint_path": "/path/to/checkpoint.keras",
+    "model_path": "/path/to/model.meta",
+    "log_path": "/path/to/log.txt",
+    "corpus_path":"path/to/CameraPrIMuS/Corpus",
+    "voc_path": "./Data/vocabulary_semantic.txt",
+    "voc_type": "semantic",
+    "val_split": 0.1,
+    "model_params_path": "./model-params.json",
+    "otfa_params": "./otfa.json",
+    "test_results_path": "/path/to/logs/test_results.txt"
+}

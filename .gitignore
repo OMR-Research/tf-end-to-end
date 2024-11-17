@@ -1,0 +1,5 @@
+config.json
+
+/.vscode/
+/__pycache__/
+*events.out*

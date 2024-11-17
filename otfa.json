@@ -1,0 +1,76 @@
+[
+{
+    "type": "distortion",
+    "distribution": "gaussian",
+    "variance": "0.001"
+},
+{
+    "type": "rotation",
+    "distribution": "gaussian",
+    "variance": "12.0"    
+},
+{
+    "type": "strech",
+    "distribution": "gaussian",
+    "variance": "0.2",
+    "axis": "1"
+},
+{
+    "type": "strech",
+    "distribution": "gaussian",
+    "variance": "0.2",
+    "axis": "0"
+},
+{
+    "type": "scale",
+    "distribution": "gaussian",
+    "variance": "0.3"
+},
+{
+    "type": "scale",
+    "distribution": "gaussian",
+    "variance": "0.3"
+},
+{
+    "type": "translate",
+    "distribution": "gaussian",
+    "variance": "0.0",
+    "axis": "1"
+},
+{
+    "type": "translate",
+    "distribution": "gaussian",
+    "variance": "0.3",
+    "axis": "0"
+},
+{
+    "type": "blur",
+    "distribution": "gaussian",
+    "variance": "0.1"
+},
+{
+    "type": "contrast_shift",
+    "distribution": "gaussian",
+    "variance": "0.15"
+},
+{
+    "type": "brightness_shift",
+    "distribution": "gaussian",
+    "variance": "0.15"
+},
+{
+    "type": "sharpen",
+    "distribution": "gaussian",
+    "variance": "0.25"
+},
+{
+    "type": "salt_pepper",
+    "distribution": "uniform",
+    "variance": "0.12"
+},
+{
+    "type": "radial_distortion",
+    "distribution": "gaussian",
+    "variance": "0.0"
+}
+]
